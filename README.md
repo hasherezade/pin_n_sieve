@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/hasherezade/pin_n_sieve.svg)](https://github.com/hasherezade/pin_n_sieve/releases)
 
- A dynamic malware unpacker based on Intel Pin and PE-sieve (deploys PE-sieve scan on specific triggers).
+ A dynamic malware unpacker based on Intel Pin and PE-sieve (deploys PE-sieve scan on specific triggers). Caution: during the process the malware will be deployed. Use it on a VM only.
  
 ### WARNING: this is an *experimental version*
 
