@@ -1,0 +1,25 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\exefile\shell\PIN_unpack]
+@="Unpack with PIN (Pin'n'Sieve)"
+
+[HKEY_CLASSES_ROOT\exefile\shell\PIN_unpack\command]
+@="\"C:\\pin\\source\\tools\\pin_n_sieve\\install32_64\\run_me.bat\" \"%1\" \"exe\" \"U\""
+
+[HKEY_CLASSES_ROOT\dllfile\shell\PIN_unpack]
+@="Unpack with PIN (Pin'n'Sieve)"
+
+[HKEY_CLASSES_ROOT\dllfile\shell\PIN_unpack\command]
+@="\"C:\\pin\\source\\tools\\pin_n_sieve\\install32_64\\run_me.bat\" \"%1\" \"dll\" \"U\""
+
+[HKEY_CLASSES_ROOT\exefile\shell\PIN_unpack_admin]
+@="Unpack with PIN (Pin'n'Sieve) - as Administrator"
+
+[HKEY_CLASSES_ROOT\exefile\shell\PIN_unpack_admin\command]
+@="\"C:\\pin\\source\\tools\\pin_n_sieve\\install32_64\\run_me.bat\" \"%1\" \"exe\" \"A\""
+
+[HKEY_CLASSES_ROOT\dllfile\shell\PIN_unpack_admin]
+@="Unpack with PIN (Pin'n'Sieve) - as Administrator"
+
+[HKEY_CLASSES_ROOT\dllfile\shell\PIN_unpack_admin\command]
+@="\"C:\\pin\\source\\tools\\pin_n_sieve\\install32_64\\run_me.bat\" \"%1\" \"dll\" \"A\""
