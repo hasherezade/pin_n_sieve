@@ -12,5 +12,5 @@ To compile the prepared project you need to use [Visual Studio >= 2012](https://
 
 1. Clone this repo into `\source\tools` that is inside your Pin root directory.
 2. Open the project in Visual Studio. 
-3. Modify the file [my_paths.h](https://github.com/hasherezade/pin_n_sieve/blob/main/my_paths.h), and set the path to `windows.h` into `_WINDOWS_H_PATH_`, appropriate to your environment.
+3. Modify the file [my_paths.h](my_paths.h), and set the path to `windows.h` into `_WINDOWS_H_PATH_`, appropriate to your environment.
 4. The other installation steps are analogous to the ones explained in [this Wiki](https://github.com/hasherezade/tiny_tracer/wiki/Installation).
