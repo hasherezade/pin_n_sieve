@@ -60,6 +60,7 @@ scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[])
 	ss << PE_SIEVE;
 	ss << " /pid " << std::dec << pid;
 	ss << " /dir " << out_dir;
+	ss << " /mignore ntdll.dll"; // NTDLL is patched by the Pin
 	ss << " /quiet";
 
 	std::string cmdline = ss.str();
