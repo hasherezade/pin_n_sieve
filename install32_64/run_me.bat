@@ -17,11 +17,13 @@ set PINTOOL32=%PIN_TOOLS_DIR%\PinNSieve32.dll
 set PINTOOL64=%PIN_TOOLS_DIR%\PinNSieve64.dll
 set PINTOOL=%PINTOOL32%
 
-%PIN_TOOLS_DIR%\kdb_check.exe
-if NOT %errorlevel% EQU 0 (
-	echo Disable Kernel Mode Debugger before running the PIN tool!
-	pause
-	exit
+if exist %PIN_TOOLS_DIR%\kdb_check.exe (
+	%PIN_TOOLS_DIR%\kdb_check.exe
+	if NOT %errorlevel% EQU 0 (
+		echo Disable Kernel Mode Debugger before running the PIN tool!
+		pause
+		exit
+	)
 )
 
 rem TRACED_MODULE - by default it is the main module, but it can be also a DLL within the traced process
