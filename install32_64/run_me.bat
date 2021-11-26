@@ -15,6 +15,7 @@ set PIN_TOOLS_DIR=C:\pin\source\tools\%PINTOOL_DIR%\install32_64\
 
 set PINTOOL32=%PIN_TOOLS_DIR%\PinNSieve32.dll
 set PINTOOL64=%PIN_TOOLS_DIR%\PinNSieve64.dll
+set PINTOOL=%PINTOOL32%
 
 if exist %PIN_TOOLS_DIR%\kdb_check.exe (
 	%PIN_TOOLS_DIR%\kdb_check.exe
@@ -45,10 +46,12 @@ set PESIEVE_DIR=%PIN_TOOLS_DIR%
 %PIN_TOOLS_DIR%\pe_check.exe "%TARGET_APP%"
 if %errorlevel% == 32 (
 	echo 32bit selected
+	set PINTOOL=%PINTOOL32%
 	set DLL_LOAD=%DLL_LOAD32%
 )
 if %errorlevel% == 64 (
 	echo 64bit selected
+	set PINTOOL=%PINTOOL64%
 	set DLL_LOAD=%DLL_LOAD64%
 )
 
@@ -63,8 +66,8 @@ if [%IS_ADMIN%] == [A] (
 
 set ADMIN_CMD=%PIN_TOOLS_DIR%\sudo.vbs
 
-set DLL_CMD=%PIN_DIR%\pin.exe -t64 %PINTOOL64% -t %PINTOOL32% -m "%TRACED_MODULE%" -o %TAG_FILE% -s %SETTINGS_FILE% -d %PESIEVE_DIR% -- "%DLL_LOAD%" "%TARGET_APP%" %DLL_EXPORTS%
-set EXE_CMD=%PIN_DIR%\pin.exe -t64 %PINTOOL64% -t %PINTOOL32% -m "%TRACED_MODULE%" -o %TAG_FILE% -s %SETTINGS_FILE% -d %PESIEVE_DIR% -- "%TARGET_APP%" 
+set DLL_CMD=%PIN_DIR%\pin.exe -t %PINTOOL% -m "%TRACED_MODULE%" -o %TAG_FILE% -s %SETTINGS_FILE% -d %PESIEVE_DIR% -- "%DLL_LOAD%" "%TARGET_APP%" %DLL_EXPORTS%
+set EXE_CMD=%PIN_DIR%\pin.exe -t %PINTOOL% -m "%TRACED_MODULE%" -o %TAG_FILE% -s %SETTINGS_FILE% -d %PESIEVE_DIR% -- "%TARGET_APP%" 
 
 ;rem "Trace EXE"
 if [%PE_TYPE%] == [exe] (
