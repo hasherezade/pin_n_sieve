@@ -22,7 +22,7 @@
 #include "ScanProcess.h"
 
 #define TOOL_NAME "Pin'n'Sieve"
-#define VERSION "0.1.1"
+#define VERSION "0.2.1"
 
 #include "Util.h"
 #include "Settings.h"
