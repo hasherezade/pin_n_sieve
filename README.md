@@ -9,8 +9,8 @@
 How to build?
 -
 To compile the prepared project you need to use [Visual Studio >= 2012](https://visualstudio.microsoft.com/downloads/). It was tested with [Intel Pin 3.28](https://software.intel.com/en-us/articles/pin-a-binary-instrumentation-tool-downloads).<br/>
+Using PE-sieve [v0.3.8](https://github.com/hasherezade/pe-sieve/releases/tag/v0.3.8)</br>
 
 1. Clone this repo into `\source\tools` that is inside your Pin root directory.
 2. Open the project in Visual Studio. 
-3. Modify the file [my_paths.h](my_paths.h), and set the path to `windows.h` into `_WINDOWS_H_PATH_`, appropriate to your environment.
-4. The other installation steps are analogous to the ones explained in [this Wiki](https://github.com/hasherezade/tiny_tracer/wiki/Installation).
+3. The other installation steps are analogous to the ones explained in [this Wiki](https://github.com/hasherezade/tiny_tracer/wiki/Installation).
