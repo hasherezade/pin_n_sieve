@@ -8,7 +8,7 @@
 
 How to build?
 -
-To compile the prepared project you need to use [Visual Studio >= 2012](https://visualstudio.microsoft.com/downloads/). It was tested with [Intel Pin 3.19](https://software.intel.com/en-us/articles/pin-a-binary-instrumentation-tool-downloads).<br/>
+To compile the prepared project you need to use [Visual Studio >= 2012](https://visualstudio.microsoft.com/downloads/). It was tested with [Intel Pin 3.28](https://software.intel.com/en-us/articles/pin-a-binary-instrumentation-tool-downloads).<br/>
 
 1. Clone this repo into `\source\tools` that is inside your Pin root directory.
 2. Open the project in Visual Studio. 

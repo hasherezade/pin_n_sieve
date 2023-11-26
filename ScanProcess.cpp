@@ -1,6 +1,6 @@
 #include "ScanProcess.h"
 
-#include "my_paths.h"
+#include "win/win_paths.h"
 #include <pe_sieve_api.h>
 #include <pe_sieve_return_codes.h>
 

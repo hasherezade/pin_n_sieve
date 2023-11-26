@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{639EF517-FCFC-408E-9500-71F0DC0458DB}</ProjectGuid>
-    <RootNamespace>TinyTracer</RootNamespace>
+    <RootNamespace>PinNSieve</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>PinNSieve</ProjectName>
   </PropertyGroup>
@@ -129,7 +129,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/export:main %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
+      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;pinipc.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\ia32\lib;..\..\..\ia32\lib-ext;..\..\..\extras\xed-ia32\lib;..\..\..\ia32\runtime\pincrt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -142,6 +142,12 @@
       <AllowIsolation>true</AllowIsolation>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PreBuildEvent>
+      <Command>win_hdrs_init.bat "$(WindowsSdkDir)"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Generate "my_paths.h"</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -168,7 +174,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/export:main %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
+      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;pinipc.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\intel64\lib;..\..\..\intel64\lib-ext;..\..\..\extras\xed-intel64\lib;..\..\..\intel64\runtime\pincrt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -180,6 +186,12 @@
       <TargetMachine>MachineX64</TargetMachine>
       <AllowIsolation>true</AllowIsolation>
     </Link>
+    <PreBuildEvent>
+      <Command>win_hdrs_init.bat "$(WindowsSdkDir)"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Generate "my_paths.h"</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -206,7 +218,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/export:main %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
+      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;pinipc.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\ia32\lib;..\..\..\ia32\lib-ext;..\..\..\extras\xed-ia32\lib;..\..\..\ia32\runtime\pincrt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -222,6 +234,12 @@
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
+    <PreBuildEvent>
+      <Command>win_hdrs_init.bat "$(WindowsSdkDir)"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Generate "my_paths.h"</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -250,7 +268,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/export:main %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
+      <AdditionalDependencies>pin.lib;xed.lib;pincrt.lib;pinipc.lib;kernel32.lib;crtbeginS.obj</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\intel64\lib;..\..\..\intel64\lib-ext;..\..\..\extras\xed-intel64\lib;..\..\..\intel64\runtime\pincrt;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
@@ -265,6 +283,12 @@
       <BaseAddress>0xC5000000</BaseAddress>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
+    <PreBuildEvent>
+      <Command>win_hdrs_init.bat "$(WindowsSdkDir)"</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Generate "my_paths.h"</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ModuleInfo.cpp" />
@@ -277,7 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModuleInfo.h" />
-    <ClInclude Include="my_paths.h" />
+    <ClInclude Include="win/win_paths.h" />
     <ClInclude Include="ProcessInfo.h" />
     <ClInclude Include="ScanProcess.h" />
     <ClInclude Include="TraceLog.h" />
