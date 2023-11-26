@@ -22,7 +22,7 @@
 #include "ScanProcess.h"
 
 #define TOOL_NAME "Pin'n'Sieve"
-#define VERSION "0.2.1"
+#define VERSION "0.2.2"
 
 #include "Util.h"
 #include "Settings.h"
@@ -93,10 +93,13 @@ bool isStrEqualI(const std::string &str1, const std::string &str2)
 
 bool RunPEsieveScan(int pid)
 {
-    scan_res res = ScanProcess(m_PESieveDir.c_str(), pid, m_Settings.outDir.c_str());
+    const bool is_remote = PIN_GetPid() != pid;
+    if (is_remote) {
+        std::cout << "Scanning remote process: " << pid << "\n";
+    }
+    scan_res res = ScanProcess(m_PESieveDir.c_str(), pid, m_Settings.outDir.c_str(), is_remote);
     std::stringstream ss;
-    ss << "Scanned by PE-sieve: ";
-    ss << " PID: " << pid << ", ";
+    ss << "PID [" << pid << "] ";
     ss << "Status: ";
     if (res == SCAN_SUSPICIOUS) {
         ss << "SUSPICIOUS, ";
@@ -503,7 +506,7 @@ int main(int argc, char *argv[])
     // Initialize PIN library. Print help message if -h(elp) is specified
     // in the command line or the command line is invalid 
 
-    PIN_InitSymbols();
+    PIN_InitSymbolsAlt(EXPORT_SYMBOLS);
     if (PIN_Init(argc, argv))
     {
         return Usage();

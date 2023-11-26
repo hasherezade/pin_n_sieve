@@ -52,7 +52,7 @@ bool create_new_process(PROCESS_INFORMATION &pi, const LPSTR cmdLine, LPCSTR sta
 }
 
 
-scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[])
+scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[], bool is_remote)
 {
 	std::stringstream ss;
 	ss << pesieve_dir;
@@ -60,7 +60,12 @@ scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[])
 	ss << PE_SIEVE;
 	ss << " /pid " << std::dec << pid;
 	ss << " /dir " << out_dir;
-	ss << " /mignore ntdll.dll"; // NTDLL is patched by the Pin
+	if (is_remote) {
+		ss << " /shellc A";
+	}
+	else {
+		ss << " /mignore ntdll.dll"; // NTDLL is patched by the Pin
+	}
 	ss << " /quiet";
 
 	std::string cmdline = ss.str();

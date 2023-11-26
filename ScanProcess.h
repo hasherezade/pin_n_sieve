@@ -11,4 +11,4 @@ enum scan_res {
     SCAN_SUSPICIOUS = 1
 };
 
-scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[]);
+scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[], bool is_remote);
