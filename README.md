@@ -1,6 +1,7 @@
 # Pin'n'Sieve
 
 [![GitHub release](https://img.shields.io/github/release/hasherezade/pin_n_sieve.svg)](https://github.com/hasherezade/pin_n_sieve/releases)
+[![Build status](https://ci.appveyor.com/api/projects/status/isdgyxdln2f9j7gq?svg=true)](https://ci.appveyor.com/project/hasherezade/pin-n-sieve)
 
  A dynamic malware unpacker based on Intel Pin and PE-sieve (deploys PE-sieve scan on specific triggers). **Caution: during the process the malware will be deployed. Use it on a VM only.**
  
