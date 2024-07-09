@@ -36,7 +36,7 @@ build_script:
   - ps: msbuild PinNSieve.vcxproj "/p:platform=$env:platform;configuration=$env:configuration"
   
 after_build:
-  - mkdir C:\projects\tiny-tracer\install32_64\%artifactName%
+  - mkdir C:\projects\%projName%\install32_64\%artifactName%
   - if [%buildPlatform%]==[x64] ( cp x64\Release\PinNSieve.dll C:\projects\%projName%\install32_64\%artifactName%\PinNSieve64.dll )
   - if [%buildPlatform%]==[x86] ( cp Release\PinNSieve.dll C:\projects\%projName%\install32_64\%artifactName%\PinNSieve32.dll )
  
