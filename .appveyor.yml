@@ -1,0 +1,46 @@
+os:
+  - Visual Studio 2019
+  
+platform:
+  - x64
+  - x86
+  
+branches:
+  only:
+    - master
+
+configuration:
+  - Release
+  
+build:
+  verbosity: detailed
+  
+environment:
+  vcprojName: PinNSieve
+  projName: $(APPVEYOR_PROJECT_SLUG)
+  buildPlatform: $(PLATFORM)
+  artifactName: $(APPVEYOR_PROJECT_NAME)-$(APPVEYOR_REPO_COMMIT)-$(PLATFORM)
+  
+install:
+  - cd ..
+  - curl -fsS -o pin.zip https://software.intel.com/sites/landingpage/pintool/downloads/pin-3.30-98830-g1d7b601b3-msvc-windows.zip
+  - 7z x pin.zip
+  - cd pin-3.30-98830-g1d7b601b3-msvc-windows
+  - cd source
+  - cd tools
+  - cp -r ../../../%projName% ./
+  - cd %projName%
+ 
+build_script:
+  - ps: $PlatformToolset = "v142"
+  - ps: (Get-Content %vcprojName%.vcxproj) | %{$_ -replace "v110", $PlatformToolset} | Set-Content %vcprojName%.vcxproj
+  - ps: msbuild %vcprojName%.vcxproj "/p:platform=$env:platform;configuration=$env:configuration"
+  
+after_build:
+  - mkdir C:\projects\tiny-tracer\install32_64\%artifactName%
+  - if [%buildPlatform%]==[x64] ( cp x64\Release\%vcprojName%.dll C:\projects\%projName%\install32_64\%artifactName%\%vcprojName%64.dll )
+  - if [%buildPlatform%]==[x86] ( cp Release\%vcprojName%.dll C:\projects\%projName%\install32_64\%artifactName%\%vcprojName%32.dll )
+ 
+artifacts:
+  - path: install32_64\%artifactName%
+  
