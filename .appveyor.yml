@@ -16,7 +16,7 @@ build:
   verbosity: detailed
   
 environment:
-  projName: $(APPVEYOR_PROJECT_SLUG)
+  projName: pin-n-sieve
   buildPlatform: $(PLATFORM)
   artifactName: $(APPVEYOR_PROJECT_NAME)-$(APPVEYOR_REPO_COMMIT)-$(PLATFORM)
   
