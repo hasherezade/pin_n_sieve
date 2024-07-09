@@ -16,7 +16,6 @@ build:
   verbosity: detailed
   
 environment:
-  vcprojName: PinNSieve
   projName: $(APPVEYOR_PROJECT_SLUG)
   buildPlatform: $(PLATFORM)
   artifactName: $(APPVEYOR_PROJECT_NAME)-$(APPVEYOR_REPO_COMMIT)-$(PLATFORM)
@@ -33,13 +32,13 @@ install:
  
 build_script:
   - ps: $PlatformToolset = "v142"
-  - ps: (Get-Content %vcprojName%.vcxproj) | %{$_ -replace "v110", $PlatformToolset} | Set-Content %vcprojName%.vcxproj
-  - ps: msbuild %vcprojName%.vcxproj "/p:platform=$env:platform;configuration=$env:configuration"
+  - ps: (Get-Content PinNSieve.vcxproj) | %{$_ -replace "v110", $PlatformToolset} | Set-Content PinNSieve.vcxproj
+  - ps: msbuild PinNSieve.vcxproj "/p:platform=$env:platform;configuration=$env:configuration"
   
 after_build:
   - mkdir C:\projects\tiny-tracer\install32_64\%artifactName%
-  - if [%buildPlatform%]==[x64] ( cp x64\Release\%vcprojName%.dll C:\projects\%projName%\install32_64\%artifactName%\%vcprojName%64.dll )
-  - if [%buildPlatform%]==[x86] ( cp Release\%vcprojName%.dll C:\projects\%projName%\install32_64\%artifactName%\%vcprojName%32.dll )
+  - if [%buildPlatform%]==[x64] ( cp x64\Release\PinNSieve.dll C:\projects\%projName%\install32_64\%artifactName%\PinNSieve64.dll )
+  - if [%buildPlatform%]==[x86] ( cp Release\PinNSieve.dll C:\projects\%projName%\install32_64\%artifactName%\PinNSieve32.dll )
  
 artifacts:
   - path: install32_64\%artifactName%
