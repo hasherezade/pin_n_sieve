@@ -89,62 +89,6 @@ bool isStrEqualI(const std::string &str1, const std::string &str2)
 /* ===================================================================== */
 // PE-sieve deployment
 /* ===================================================================== */
-#ifdef _WIN64
-#define PE_SIEVE "pe-sieve64.exe"
-#else
-#define PE_SIEVE "pe-sieve32.exe"
-#endif
-
-#include <pe_sieve_return_codes.h>
-
-scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[], bool is_remote)
-{
-    std::stringstream ss;
-    ss << pesieve_dir;
-    ss << "\\";
-    ss << PE_SIEVE;
-    ss << " /pid " << std::dec << pid;
-    ss << " /dir " << out_dir;
-    if (is_remote) {
-        ss << " /shellc A";
-    }
-    else {
-        ss << " /mignore ntdll.dll"; // NTDLL is patched by the Pin
-    }
-    ss << " /quiet";
-
-    std::string cmdline = ss.str();
-    OS_PROCESS_WAITABLE_PROCESS process = 0;
-    NATIVE_FD stdFiles = 0;
-    
-    OS_RETURN_CODE res;
-    res = OS_FindStdFiles(&stdFiles);
-    if (res.generic_err != OS_RETURN_CODE_NO_ERROR) {
-        return SCAN_ERROR_0;
-    }
-    USIZE env_block_size = 0;
-    CHAR** env_block = nullptr;
-    res = OS_GetEnvironmentBlock(PIN_GetPid(), &env_block, &env_block_size);
-    if (res.generic_err != OS_RETURN_CODE_NO_ERROR) {
-        return SCAN_ERROR_0;
-    }
-    res = OS_CreateProcess(cmdline.c_str(), &stdFiles, nullptr, env_block, &process);
-    if (res.generic_err != OS_RETURN_CODE_NO_ERROR) {
-        return SCAN_ERROR_0;
-    }
-    UINT32 exitCode = 0;
-    res = OS_WaitForProcessTermination(process, &exitCode);
-    if (res.generic_err != OS_RETURN_CODE_NO_ERROR) {
-        return SCAN_ERROR_0;
-    }
-    if (exitCode == PESIEVE_NOT_DETECTED) {
-        return SCAN_NOT_SUSPICIOUS;
-    }
-    if (exitCode == PESIEVE_DETECTED) {
-        return SCAN_SUSPICIOUS;
-    }
-    return SCAN_ERROR_1;
-}
 
 
 bool RunPEsieveScan(int pid)
@@ -153,7 +97,6 @@ bool RunPEsieveScan(int pid)
     if (is_remote) {
         std::cout << "Scanning remote process: " << pid << "\n";
     }
-
     scan_res res = ScanProcess(m_PESieveDir.c_str(), pid, m_Settings.outDir.c_str(), is_remote);
     std::stringstream ss;
     ss << "PID [" << pid << "] ";
