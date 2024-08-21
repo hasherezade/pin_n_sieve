@@ -293,7 +293,7 @@
   <ItemGroup>
     <ClCompile Include="ModuleInfo.cpp" />
     <ClCompile Include="ProcessInfo.cpp" />
-    <ClCompile Include="NativeApi.cpp" />
+    <ClCompile Include="ScanProcess.cpp" />
     <ClCompile Include="PinNSieve.cpp" />
     <ClCompile Include="TraceLog.cpp" />
     <ClCompile Include="Util.cpp" />
@@ -303,7 +303,7 @@
     <ClInclude Include="ModuleInfo.h" />
     <ClInclude Include="win/win_paths.h" />
     <ClInclude Include="ProcessInfo.h" />
-    <ClInclude Include="NativeApi.h" />
+    <ClInclude Include="ScanProcess.h" />
     <ClInclude Include="TraceLog.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="Settings.h" />
