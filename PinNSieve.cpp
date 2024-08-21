@@ -19,7 +19,7 @@
 #include "ProcessInfo.h"
 #include "TraceLog.h"
 
-#include "ScanProcess.h"
+#include "NativeApi.h"
 
 #define TOOL_NAME "Pin'n'Sieve"
 #define VERSION "0.2.2"
@@ -96,6 +96,13 @@ bool isStrEqualI(const std::string &str1, const std::string &str2)
 #endif
 
 #include <pe_sieve_return_codes.h>
+
+enum scan_res {
+    SCAN_ERROR_1 = (-2),
+    SCAN_ERROR_0 = (-1),
+    SCAN_NOT_SUSPICIOUS = 0,
+    SCAN_SUSPICIOUS = 1
+};
 
 scan_res ScanProcess(const char pesieve_dir[], int pid, const char out_dir[], bool is_remote)
 {
